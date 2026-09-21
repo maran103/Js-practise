@@ -7,3 +7,9 @@ learned ternary opertor
 
 Number.isNan() - confused me today 
 It returns true if the value is Nan that is Not a number
+
+day 1 
+
+learned functions
+
+confused part is re checking the function
