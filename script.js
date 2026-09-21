@@ -37,6 +37,47 @@ else
 const label = tipPercent >=10 ? "generous tip": "good tip";
 console.log(label);
 
+function calculateTip(bill, tipPercent, people=1){
+    if(bill<=0 || Number.isNaN(Number(bill))){
+        return "invalid bill";
+    }
+    if(tipPercent<0 || tipPercent>100 || Number.isNaN(Number(tipPercent)) || typeof tipPercent !== "number"){
+        return "invalid tip percentage";
+    }
+    if(people < 1 || Number.isNaN(Number(people)) || typeof people !== "number"){
+        return "invalid number of people";
+    }
+    const tip =(bill * tipPercent)/100;
+    const total = bill + tip;
+    const perPerson = total / people;
+    return { tip, total, perPerson: perPerson.toFixed(2) };
+}
+console.log(calculateTip(1200, 10, 3));
+console.log(calculateTip(1200, 10));
+console.log(calculateTip(0, 10, 3));
+console.log(calculateTip(1200, 110, 3));
+console.log(calculateTip("abc", 10, 0));
+
+const t = calculateTip(1000,10,2);
+if (t.error){
+    console.log("error");
+}
+else{
+    const {tip,total,perPerson} = t;
+    console.log(`tip:${tip},total:${total},person:${perPerson}}`);
+}
+function tipDescribe(tipPercent){
+    if (tipPercent >=10){                           
+        return "generous tip";
+    }
+    else{
+        return "good tip";
+    }
+}
+
+console.log(tipDescribe(5));
+
+
 //console.log(tipAmount, total, perPerson);
 
 //console.log(perPerson.toFixed(2));
@@ -53,4 +94,4 @@ console.log(label);
 // console.log(Number("5")+3); // output will be 8 because "5" is converted to number 5
 // console.log(typeof null);
 // console.log(typeof undefined);
-console.log(Number.isNaN("false"));
+//console.log(Number.isNaN("false"));
